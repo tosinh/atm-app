@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    image: 2115262/atm-frontend:latest # Gắn tag image cho frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - atm-network
+
+  backend:
+    build:
+      context: ./backend
+    image: 2115262/atm-backend:latest # Gắn tag image cho backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+    networks:
+      - atm-network
+
+  database:
+    image: mongo
+    container_name: atm-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - atm-db-data:/data/db
+    networks:
+      - atm-network
+
+volumes:
+  atm-db-data:
+    driver: local
+
+networks:
+  atm-network:
+    driver: bridge
