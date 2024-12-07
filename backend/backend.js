@@ -12,8 +12,8 @@ app.use(cors());
 
 // Kết nối MongoDB
 mongoose.connect(
-  // mongodb://localhost:27017/atm,
-  // mongodb://database:27017/atm,
+  // `mongodb://localhost:27017/atm`,
+  // `mongodb://database:27017/atm`,
   `mongodb://host.docker.internal:27017/atm`,
   {
     useNewUrlParser: true,

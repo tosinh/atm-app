@@ -4,7 +4,7 @@ services:
   frontend:
     build:
       context: ./frontend
-    image: 2115262/atm-frontend:latest # Gắn tag image cho frontend
+    image: 2115262/atm-frontend:latest 
     ports:
       - "3000:3000"
     depends_on:
@@ -15,7 +15,7 @@ services:
   backend:
     build:
       context: ./backend
-    image: 2115262/atm-backend:latest # Gắn tag image cho backend
+    image: 2115262/atm-backend:latest 
     ports:
       - "5000:5000"
     depends_on:
@@ -32,6 +32,7 @@ services:
       - atm-db-data:/data/db
     networks:
       - atm-network
+    restart: unless-stopped
 
 volumes:
   atm-db-data:
